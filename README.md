@@ -74,8 +74,8 @@ O foco foi aplicar **conceitos fundamentais de POO, padrões de projeto e persis
 
 ## 🤝 Contato
 
-- [LinkedIn](https://www.linkedin.com/in/seu-perfil)
-- carlos.brito@email.com
+- [LinkedIn](https://www.linkedin.com/in/cbritodev)
+- cbritodeveloper@gmail.com
 
 ---
 
