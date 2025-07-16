@@ -4,7 +4,7 @@ package br.com.carlosbrito.model.veiculo;
  * @author carlos.brito
  * Criado em: 09/07/2025
  */
-public abstract class Veiculo {
+public abstract class Veiculo implements Cloneable {
     private final int id;
     private String modelo;
     private String fabricante;
@@ -63,5 +63,15 @@ public abstract class Veiculo {
     public void setModelo(String modelo){
         this.modelo = modelo;
     }
+
+    @Override
+    public Veiculo clone() {
+        try {
+            return (Veiculo) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Erro ao clonar o veiculo", e);
+        }
+    }
+
 
 }

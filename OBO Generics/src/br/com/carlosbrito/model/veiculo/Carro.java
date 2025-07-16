@@ -6,7 +6,7 @@ import br.com.carlosbrito.builder.CarroBuilder;
  * @author carlos.brito
  * Criado em: 09/07/2025
  */
-public class Carro  extends Veiculo {
+public class Carro  extends Veiculo implements Cloneable{
     private int numeroPortas;
     private String tipoCombustivel;
     private boolean arCondicionado;
@@ -66,4 +66,10 @@ public class Carro  extends Veiculo {
                 getModelo(), getAnoFabricacao(),getPlaca(),getFabricante(), tipoCombustivel, numeroPortas, capacidadePortaMalas, arCondicionado ? "Sim" : "Não"
         );
     }
+
+    @Override
+    public Carro clone() {
+        return (Carro) super.clone();
+    }
+
 }

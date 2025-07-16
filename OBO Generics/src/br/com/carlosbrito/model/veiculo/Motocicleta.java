@@ -6,11 +6,12 @@ import br.com.carlosbrito.builder.MotocicletaBuilder;
  * @author carlos.brito
  * Criado em: 11/07/2025
  */
-public class Motocicleta extends Veiculo {
+public class Motocicleta extends Veiculo implements Cloneable {
     private int cilindradas;
     private boolean partidaEletrica;
     private String tipoMotocicleta;
     private boolean temBagageiro;
+    private String tipoCombustivel;
 
     public Motocicleta(MotocicletaBuilder builder) {
         super(builder.getId(), builder.getFabricante(), builder.getCor(), builder.getAnoFabricacao(), builder.getPlaca(), builder.getModelo());
@@ -18,6 +19,7 @@ public class Motocicleta extends Veiculo {
         this.partidaEletrica = builder.isPartidaEletrica();
         this.tipoMotocicleta = builder.getTipoMotocicleta();
         this.temBagageiro = builder.getTemBagageiro();
+        this.tipoCombustivel = builder.getTipoCombustivel();
     }
 
     public int getCilindradas() {
@@ -65,5 +67,9 @@ public class Motocicleta extends Veiculo {
                         "Possui partida elétrica: %s",
                 getModelo(), getAnoFabricacao(), getPlaca(), getFabricante(), cilindradas, tipoMotocicleta, temBagageiro ? "Sim" : "Não", partidaEletrica ? "Sim" : "Não"
         );
+    }
+
+    public Motocicleta clone() {
+        return (Motocicleta) super.clone();
     }
 }

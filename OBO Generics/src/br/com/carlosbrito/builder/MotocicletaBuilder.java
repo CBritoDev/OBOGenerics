@@ -17,12 +17,15 @@ public class MotocicletaBuilder {
     private boolean partidaEletrica;
     private String tipoMotocicleta;
     private Boolean temBagageiro;
+    private String tipoCombustivel;
 
     public MotocicletaBuilder comId(int id){
         this.id = id;
         return this;
     }
 
+
+    public MotocicletaBuilder comTipoCombustivel(String tipoCombustivel){this.tipoCombustivel = tipoCombustivel; return this;}
     public MotocicletaBuilder comModelo(String modelo){this.modelo = modelo; return this;}
 
     public MotocicletaBuilder comFabricante(String fabricante){this.fabricante = fabricante; return this;}
@@ -43,6 +46,14 @@ public class MotocicletaBuilder {
 
     public Motocicleta build(){
         return new Motocicleta(this);
+    }
+
+    public String getTipoCombustivel(){
+        return tipoCombustivel;
+    }
+
+    public void setTipoCombustivel(String tipoCombustivel){
+        this.tipoCombustivel = tipoCombustivel;
     }
 
     public int getId() {
