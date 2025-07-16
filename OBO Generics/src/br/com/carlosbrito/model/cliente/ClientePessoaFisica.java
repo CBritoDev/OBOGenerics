@@ -1,6 +1,8 @@
 package br.com.carlosbrito.model.cliente;
 
 import br.com.carlosbrito.builder.ClientePessoaFisicaBuilder;
+import br.com.carlosbrito.builder.PessoaJOwnerBuilder;
+import br.com.carlosbrito.model.PessoaJuridicaOwner;
 import br.com.carlosbrito.util.DocumentoUtil;
 
 import java.time.LocalDate;
@@ -16,11 +18,15 @@ public class ClientePessoaFisica extends Cliente {
     private LocalDate dataNascimento;
 
 
-    public ClientePessoaFisica(ClientePessoaFisicaBuilder builder){
+    ClientePessoaFisica(ClientePessoaFisicaBuilder builder){
         super(builder.getId(), builder.getNome(), builder.getTelefone(), builder.getEndereco());
         this.cpf = builder.getCpf();
         this.sobrenome = builder.getSobrenome();
         this.dataNascimento = builder.getDataNascimento();
+    }
+
+    public static ClientePessoaFisica create(ClientePessoaFisicaBuilder builder) {
+        return new ClientePessoaFisica(builder);
     }
 
 

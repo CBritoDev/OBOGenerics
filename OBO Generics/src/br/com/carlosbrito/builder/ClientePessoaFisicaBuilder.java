@@ -2,6 +2,7 @@ package br.com.carlosbrito.builder;
 
 import br.com.carlosbrito.model.cliente.ClientePessoaFisica;
 import br.com.carlosbrito.model.Endereco;
+import br.com.carlosbrito.util.DocumentoUtil;
 
 import java.time.LocalDate;
 
@@ -11,30 +12,32 @@ import java.time.LocalDate;
  */
 public class ClientePessoaFisicaBuilder {
     private int id;
-    private String nome;
-    private String sobrenome;
-    private String telefone;
+    private final String nome;
+    private final String sobrenome;
+    private final String telefone;
     private Endereco endereco;
-    private String cpf;
+    private final String cpf;
     private LocalDate dataNascimento;
+
+
+    public ClientePessoaFisicaBuilder(String nome, String sobrenome, String cpf, String telefone) {
+        if (nome == null || sobrenome == null || cpf == null || telefone == null) {
+            throw new IllegalArgumentException("Nome, Sobrenome, CPF e Telefone são obrigatórios");
+        }
+
+        if(DocumentoUtil.validarCPF(cpf)){
+            this.cpf = cpf;
+        }else{
+            throw new IllegalArgumentException("O CNPJ inserido não é válido!");
+        }
+
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.telefone = telefone;
+    }
 
     public ClientePessoaFisicaBuilder comId(int id){
         this.id = id;
-        return this;
-    }
-
-    public ClientePessoaFisicaBuilder comNome(String nome){
-        this.nome = nome;
-        return this;
-    }
-
-    public ClientePessoaFisicaBuilder comSobrenome(String sobrenome){
-        this.sobrenome = sobrenome;
-        return this;
-    }
-
-    public ClientePessoaFisicaBuilder comTelefone(String telefone){
-        this.telefone = telefone;
         return this;
     }
 
@@ -43,13 +46,9 @@ public class ClientePessoaFisicaBuilder {
         return this;
     }
 
-    public ClientePessoaFisicaBuilder comCPF(String cpf){
-        this.cpf = cpf;
-        return this;
-    }
 
     public ClientePessoaFisica build(){
-        return new ClientePessoaFisica(this);
+        return ClientePessoaFisica.create(this);
     }
 
     public int getId() {

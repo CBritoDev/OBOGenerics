@@ -1,6 +1,7 @@
 package br.com.carlosbrito.model;
 
 import br.com.carlosbrito.builder.EnderecoBuilder;
+import br.com.carlosbrito.builder.PessoaJOwnerBuilder;
 
 /**
  * @author carlos.brito
@@ -16,7 +17,7 @@ public class Endereco {
     private String cidade;
     private String estado;
 
-    public Endereco(EnderecoBuilder builder){
+    Endereco(EnderecoBuilder builder){
         this.id = builder.getId();
         this.rua = builder.getRua();
         this.numero = builder.getNumero();
@@ -24,6 +25,14 @@ public class Endereco {
         this.cep =  builder.getCep();
         this.cidade = builder.getCidade();
         this.estado = builder.getEstado();
+    }
+
+    public static Endereco create(EnderecoBuilder builder) {
+        return new Endereco(builder);
+    }
+
+    public static Endereco criar(EnderecoBuilder builder){
+        return new Endereco(builder);
     }
 
     public int getId() {

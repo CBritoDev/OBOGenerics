@@ -1,6 +1,9 @@
 package br.com.carlosbrito.model.cliente;
 
+import br.com.carlosbrito.builder.ClientePessoaJuridicaBuilder;
+import br.com.carlosbrito.builder.PessoaJOwnerBuilder;
 import br.com.carlosbrito.model.Endereco;
+import br.com.carlosbrito.model.PessoaJuridicaOwner;
 import br.com.carlosbrito.util.DocumentoUtil;
 
 import java.util.Objects;
@@ -15,13 +18,16 @@ public class ClientePessoaJuridica extends Cliente {
     private String nomeFantasia;
     private String razaoSocial;
 
-    public ClientePessoaJuridica(String cnpj,String nomeFantasia,String razaoSocial,int id, String nome, String telefone, Endereco endereco) {
-        super(id, nome, telefone, endereco);
-        this.cnpj = cnpj;
-        this.nomeFantasia = nomeFantasia;
-        this.razaoSocial = razaoSocial;
+    ClientePessoaJuridica(ClientePessoaJuridicaBuilder builder) {
+        super(builder.getId(),builder.getNome(),builder.getTelefone(),builder.getEndereco());
+        this.cnpj = builder.getCnpj();
+        this.nomeFantasia = builder.getNomeFantasia();
+        this.razaoSocial = builder.getRazaoSocial();
     }
 
+    public static ClientePessoaJuridica create(ClientePessoaJuridicaBuilder builder) {
+        return new ClientePessoaJuridica(builder);
+    }
 
     @Override
     public boolean validarDocumento() {

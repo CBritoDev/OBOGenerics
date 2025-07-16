@@ -11,9 +11,16 @@ public class EnderecoBuilder {
     private String rua;
     private int numero;
     private String bairro;
-    private String cep;
+    private final String cep;
     private String cidade;
     private String estado;
+
+    public EnderecoBuilder(String cep){
+        if(cep == null){
+            throw new IllegalArgumentException("O campo CEP é obrigatório!");
+        }
+        this.cep = cep.replaceAll("\\D","");
+    }
 
     public EnderecoBuilder comId(int id){
         this.id = id;
@@ -35,11 +42,6 @@ public class EnderecoBuilder {
         return this;
     }
 
-    public EnderecoBuilder comCep(String cep){
-        this.bairro = cep.replaceAll("\\D","");
-        return this;
-    }
-
     public EnderecoBuilder comCidade(String cidade){
         this.cidade = cidade;
         return this;
@@ -51,7 +53,7 @@ public class EnderecoBuilder {
     }
 
     public Endereco build(){
-        return new Endereco(this);
+        return Endereco.create(this);
     }
 
     public int getId() {
